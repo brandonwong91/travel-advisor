@@ -49,8 +49,6 @@ export const getPlacesData = async(sw, ne)=>{
               tr_longitude: ne.lng,
             },
             headers: {
-              'x-rapidapi-host': 'travel-advisor.p.rapidapi.com',
-              'x-rapidapi-key': '0c3b50ff24mshf43fc73e7204496p1384bcjsn8189afced25b'
             }
           });
         console.log(`getPlacesData`, sw, ne, data)
