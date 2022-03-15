@@ -2,19 +2,6 @@ import axios from 'axios';
 
 const URL = 'https://travel-advisor.p.rapidapi.com/restaurants/list-in-boundary';
 
-const options = {
-    params: {
-      bl_latitude: '11.847676',
-      tr_latitude: '12.838442',
-      bl_longitude: '109.095887',
-      tr_longitude: '109.149359',
-    },
-    headers: {
-      'x-rapidapi-host': 'travel-advisor.p.rapidapi.com',
-      'x-rapidapi-key': '0c3b50ff24mshf43fc73e7204496p1384bcjsn8189afced25b'
-    }
-  };
-
 // const options = {
 //     // method: 'POST',
 //     // url: 'https://travel-advisor.p.rapidapi.com/restaurants/v2/list',
@@ -39,9 +26,9 @@ const options = {
 //     }
 //   };
 
-export const getPlacesData = async(sw, ne)=>{
+export const getPlacesData = async(type, sw, ne)=>{
     try{
-        const { data: { data } } = await axios.get(URL, {
+        const { data: { data } } = await axios.get(`https://travel-advisor.p.rapidapi.com/${type}/list-in-boundary`, {
             params: {
               bl_latitude: sw.lat,
               tr_latitude: ne.lat,
@@ -49,9 +36,10 @@ export const getPlacesData = async(sw, ne)=>{
               tr_longitude: ne.lng,
             },
             headers: {
+              'x-rapidapi-host': 'travel-advisor.p.rapidapi.com',
+              'x-rapidapi-key': '0c3b50ff24mshf43fc73e7204496p1384bcjsn8189afced25b'
             }
           });
-        console.log(`getPlacesData`, sw, ne, data)
         return data;
     }catch(err){
         console.log(err);
